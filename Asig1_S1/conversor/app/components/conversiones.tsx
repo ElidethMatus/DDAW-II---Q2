@@ -1,8 +1,4 @@
-type Props = {
-  resultados: string[];
-};
-
-export default function Conversiones({ resultados }: Props) {
+export default function Conversiones({ resultados }: { resultados: string[] }) {
   return (
     <ul>
       <li>{resultados[0]}</li>
