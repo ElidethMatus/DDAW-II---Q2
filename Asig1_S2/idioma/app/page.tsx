@@ -1,5 +1,4 @@
 'use client'
-
 import { useState, useEffect } from "react";
 import Boton from "./components/botones";
 
@@ -26,10 +25,10 @@ export default function Home() {
   }
 
  useEffect(() => {
-  const nuevaLista = palabras.map((p) => p[idioma as "es" | "en"]);
+
+  const nuevaLista = palabras.map((p) => p[idioma]);
   setLista(nuevaLista);
 }, [idioma]);
-
   return (
     <main>
 

@@ -2,8 +2,7 @@ import Conversiones from "./components/conversiones";
 
 export default function Resultados() {
 
-  const temperatura = 40;
-
+  const temperatura = 40; //Celsius
 
   const fahrenheit = (temperatura * 9/5) + 32;
   const kelvin = temperatura + 273.15;

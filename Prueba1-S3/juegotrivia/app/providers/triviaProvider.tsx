@@ -7,11 +7,8 @@ import { contextTrivia } from '../contexts/triviaContext';
 export default function ProviderTrivia(props: View) {
 
     const [puntaje, setPuntaje] = useState(0);
-
     const [preguntas, setPreguntas] = useState<Pregunta[]>([]);
-
     const [preguntaActual, setPreguntaActual] = useState(0);
-
     const [resultado, setResultado] = useState("");
 
     useEffect(() => {
@@ -54,38 +51,24 @@ export default function ProviderTrivia(props: View) {
     }, []);
 
     function responder(respuesta: boolean) {
-
         const pregunta = preguntas[preguntaActual];
-
         if (respuesta === pregunta.respuestaCorrecta) {
-
             setPuntaje(puntaje + pregunta.puntajePregunta);
-
-            setResultado("✅ Correcto");
+            setResultado("Correcto");
         }
-
         else {
-
-            setResultado("❌ Incorrecto");
+            setResultado("Incorrecto");
         }
     }
-
     function siguientePregunta() {
-
         setPreguntaActual(preguntaActual + 1);
-
         setResultado("");
     }
-
     function reiniciarJuego() {
-
         setPuntaje(0);
-
         setPreguntaActual(0);
-
         setResultado("");
     }
-
     return (
         <contextTrivia.Provider
             value={{

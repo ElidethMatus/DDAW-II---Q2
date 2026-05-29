@@ -20,28 +20,23 @@ export default function Preguntas() {
 
         return (
             <div>
-
                 <h2>Trivia finalizada</h2>
-
                 <button onClick={reiniciarJuego}>
                     Reiniciar Juego
                 </button>
-
             </div>
         )
     }
 
     return (
         <div>
-
             <h2>
                 {preguntas[preguntaActual].descripcionPregunta}
             </h2>
 
             <button onClick={() => responder(true)}>
-                Verdadero
+               Verdadero
             </button>
-
             <button onClick={() => responder(false)}>
                 Falso
             </button>
