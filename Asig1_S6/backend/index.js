@@ -1,8 +1,10 @@
 const express = require('express');
+const cors = require('cors');
 const ProductModel = require('./models/tarea');
 const sequelize = require('./connection/db');
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
 // Select `lineCode`, AVG(`value`) AS promedio_valor, COUNT(*) AS cantidad_productos From Product Group by `lineCode`;
@@ -93,6 +95,35 @@ app.get('/codigos-unicos', async (req, res) => {
         });
 
     } catch (error) {
+        res.status(500).json({
+            message: error.message
+        });
+    }
+});
+
+// Select productType, SUM(value) AS valor_total From Product Group by productType;
+app.get('/valor-total-tipo-producto', async (req, res) => {
+
+    try {
+
+        const result = await ProductModel.findAll({
+            attributes: [
+                'productType',
+                [sequelize.fn('SUM', sequelize.col('value')), 'valor_total']
+            ],
+            group: ['productType']
+        });
+
+        console.log(result);
+
+        res.status(200).json({
+            message: 'Valor total por tipo de producto',
+            data: result
+        });
+
+    } catch (error) {
+        console.log(error);
+
         res.status(500).json({
             message: error.message
         });
